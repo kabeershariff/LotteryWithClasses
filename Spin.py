@@ -20,13 +20,19 @@ class Main(object):
         global money #without global keyword changing values inside function is not possible
         global ticket #ticket is a global variable
         if money >= 50: #check if there is enough money to buy tickets
-            buy = int(input(f"Enter number of Tickets you will like to buy ? Your balance is {money} $. One Ticket costs 50$ ."))
-            if buy*50 <= money: #check to avoid extra tickets
-                money = money - buy*50
-                ticket = ticket + buy
-                print(f"You Have {ticket} tickets and a balance of ${money} ")
-            else:
-                print("No Cheating")
+            
+            try:
+                buy = int(input(f"Enter number of Tickets you will like to buy ? Your balance is {money} $. One Ticket costs 50$ ."))
+                if buy*50 <= money: #check to avoid extra tickets
+                    money = money - buy*50
+                    ticket = ticket + buy
+                    print(f"You Have {ticket} tickets and a balance of ${money} ")
+                else:
+                    print("No Cheating \n")
+
+            except ValueError:
+                print("\n")   
+                Main.buy_menu()
 
     def lottery():
         global money
@@ -40,8 +46,8 @@ class Main(object):
                 print(f"Your Ticket number is {result} and the winning number is {winning_number} ")
                 ticket = ticket - 1 #remove used tickets
                 if winning_number == result: #to determine if player won
-                    print(f"=>> You Have won the JackPot .... Congrats on the $1000000 ... Tickets Left {ticket}")
+                    print(f"=>> You Have won the JackPot .... Congrats on the $1000000 ... Tickets Left {ticket} \n")
                     money += 1000000
                 else:
-                    print(f"==> Better Luck next Time.. Tickets Left {ticket} ")
+                    print(f"==> Better Luck next Time.. Tickets Left {ticket} \n")
                 
